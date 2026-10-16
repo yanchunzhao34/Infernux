@@ -1,0 +1,36 @@
+name: SWM workbench
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'customization/swm/**'
+      - '.github/workflows/swm.yml'
+  pull_request:
+    paths:
+      - 'customization/swm/**'
+      - '.github/workflows/swm.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  reference-core:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install ./customization/swm
+      - run: python -m unittest discover -s tests -v
+        working-directory: customization/swm
+      - run: node --check customization/swm/swm_workbench/static/app.js
+      - run: python customization/swm/package.py --stage out/stage/swm-ci
+      - uses: actions/upload-artifact@v4
+        with:
+          name: infernux-swm-${{ matrix.python }}
+          path: dist/releases/swm-0.1.0/

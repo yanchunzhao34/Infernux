@@ -27,6 +27,10 @@
   <a href="README.md">English</a>
 </p>
 
+## 本仓库定制版：汉字语义世界 SWM
+
+可运行的汉字空间实验工作台、隐藏数量状态、水流与材料过程、可验证回放，以及 Infernux 原生插件。见 [启动与使用](customization/swm/README.md) 和 [框架图](customization/swm/ARCHITECTURE.md)。当前实现包含参考模拟器和局部字符学习基线；神经因果世界模型仍是后续研究目标。
+
 ## 熔炉是什么？
 
 熔炉是一款 **用 Python 创作、由 C++ 运行** 的游戏引擎。玩法、编辑器工具、渲染管线与数值计算都用 Python 编写；C++ 运行时、Vulkan 渲染器和 Jolt 物理负责重活。同一个项目可以发布到 Windows、Linux、Android 和浏览器。

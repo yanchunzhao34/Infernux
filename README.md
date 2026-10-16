@@ -27,6 +27,10 @@
   <a href="README-zh.md">简体中文</a>
 </p>
 
+## This fork: Chinese Semantic World Model (SWM)
+
+A runnable character-grid workbench with persistent numeric state, water/material processes, verified replay, and a native Infernux plugin. See [usage](customization/swm/README.md) and [architecture](customization/swm/ARCHITECTURE.md). This version supplies a reference simulator and a local character-transition learning baseline; neural causal modeling remains future work.
+
 ## What is Infernux?
 
 Infernux is a game engine where **Python is where you work** and **C++ is where it runs**. You write gameplay, editor tools, render pipelines and numerical code in Python; a C++ runtime, a Vulkan renderer and Jolt physics do the heavy lifting. The same project ships to Windows, Linux, Android and the browser.

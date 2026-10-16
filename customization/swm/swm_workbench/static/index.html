@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>语义世界 · Infernux SWM</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><div class="brand"><span class="mark">界</span><div><h1>语义世界</h1><p>INFERNUX / SEMANTIC WORLD</p></div><span class="version">实验版 0.1</span></div><div class="header-actions"><span id="status" class="status">正在连接</span><button id="import">导入世界</button><button id="export" class="dark">保存与回放 ↗</button><input id="file" type="file" accept=".json,application/json" hidden></div></header>
+<main>
+<aside class="left">
+  <div class="section-title"><span>01</span> 世界实验</div>
+  <p class="muted">从一个小世界开始，观察关系如何产生变化。</p>
+  <div id="scenarios" class="scenarios"><button data-scenario="garden" class="active"><b>院落与湖泊</b><small>空间 · 材料 · 水位</small></button><button data-scenario="water"><b>湖泊注水</b><small>水量守恒与流动</small></button><button data-scenario="fire"><b>湿木与供氧</b><small>三组材料条件对照</small></button><button data-scenario="room"><b>门与房间</b><small>阻挡、包含与连通</small></button><button data-scenario="blank"><b>空白画布 ＋</b><small>创建自己的语义世界</small></button></div>
+  <div class="section-title palette-title"><span>02</span> 汉字笔刷</div>
+  <div class="segmented"><button id="inspect-mode" class="active">检查</button><button id="paint-mode">绘制</button></div>
+  <div id="palette" class="palette" aria-label="汉字笔刷"></div>
+  <p id="brush-help" class="muted">点击格点查看隐藏状态。方向键移动「人」。</p>
+  <div class="concept-note"><b>一个字，多个状态</b><p>“水”的字形可能不变，背后的水量已经改变。“，”表示被忽略，底层世界仍然存在。</p></div>
+</aside>
+<section class="center">
+  <div class="world-heading"><div><p class="eyebrow">LIVE WORLD</p><h2 id="world-name">院落与湖泊</h2></div><div class="view-tabs" aria-label="观察方式"><button data-view="semantic" class="active">汉字</button><button data-view="water">水深</button><button data-view="heat">温度</button></div></div>
+  <div class="canvas-shell"><canvas id="world" width="1024" height="768" tabindex="0" aria-label="汉字世界画布，点击选择格点，方向键移动角色"></canvas><div id="canvas-caption" class="canvas-caption">二维俯视 · 独立高程 · 持久状态</div></div>
+  <div class="transport"><div class="transport-buttons"><button id="play" class="primary">▶ 开始演化</button><button id="step">单步</button><button id="back" title="返回上一次操作检查点">↶ 回退</button></div><div class="clock"><span id="tick">00000</span><small>步 / <span id="seconds">0.0</span> s</small></div></div>
+  <div class="timeline"><span>最近轨迹</span><input id="timeline" type="range" min="0" max="0" value="0" aria-label="回放检查点"><span id="frame">0 / 0</span></div>
+  <div class="metrics"><div><small>总水量</small><strong id="water-total">—</strong><span>连续数量，不由字数决定</span></div><div><small>水量收支误差</small><strong id="water-error">—</strong><span>注入与移出均有记录</span></div><div><small>剩余燃料</small><strong id="fuel-total">—</strong><span>观察热解与氧化的差异</span></div><div><small>封闭区域</small><strong id="room-count">—</strong><span>参考几何分析，非模型发现</span></div></div>
+  <div class="experiment-note" id="experiment-note"></div>
+</section>
+<aside class="right">
+  <div class="section-title"><span>03</span> 隐藏状态</div>
+  <div class="selected"><span id="selected-glyph">木</span><div><h3 id="selected-title">选择一个格点</h3><p id="selected-coord">点击画布查看</p></div></div>
+  <div id="properties" class="properties"></div>
+  <div class="edit-fields">
+    <label>温度 <input id="temperature" type="number" min="0" max="1500" step="10"><span>°C</span></label>
+    <label>含水率 <input id="moisture" type="number" min="0" max="1" step="0.05"><span>0–1</span></label>
+    <label>供氧系数 <input id="oxygen" type="number" min="0" max="1" step="0.05"><span>0–1</span></label>
+    <label>地形高程 <input id="elevation" type="number" min="-5" max="10" step="0.1"><span>单位</span></label>
+  </div>
+  <div class="cell-actions"><button id="add-water">＋ 0.5 水</button><button id="ignite">点火</button><button id="toggle-door">开 / 关门</button><button id="reveal">显示此格</button></div>
+  <div class="section-title event-title"><span>04</span> 变化路径</div>
+  <p class="muted">这里记录实际执行的过程。学习模型的因果发现仍需单独实验。</p>
+  <div id="events" class="events"></div>
+</aside>
+</main>
+<footer><span>汉字是观察，状态是世界，过程连接变化。</span><span>CPU 参考模拟 · 规则可检查 · 回放可验证</span></footer>
+<div id="toast" class="toast" role="status"></div>
+<script src="/app.js"></script>
+</body></html>

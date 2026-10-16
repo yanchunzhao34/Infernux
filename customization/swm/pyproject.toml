@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "infernux-swm"
+version = "0.1.0"
+description = "Chinese semantic-world reference simulator and Infernux workbench"
+requires-python = ">=3.12"
+dependencies = ["numpy>=1.26"]
+license = "MIT"
+
+[project.scripts]
+infernux-swm = "swm_workbench.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["swm_core*", "swm_workbench*"]
+
+[tool.setuptools.package-data]
+swm_workbench = ["static/*"]

@@ -33,6 +33,8 @@ separate so a merged test does not hide unrelated coverage.
 
 ## Workflow owners
 
+The SWM customization has a separate portable lane: run `python -m unittest discover -s tests -v` from `customization/swm`. It owns numeric invariants, observation separation, transactional commands/import, replay/branching and the loopback HTTP workflow. `customization/swm/tools/native_smoke.py` checks the actual installed InxPackage, shared native/browser session, host stepping and preload cleanup; see the module README for prerequisites.
+
 All paths below are pytest modules. Run one with `python -m pytest PATH -q -ra`.
 
 | Critical workflow | Owning regression modules | Execution lane |
